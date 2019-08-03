@@ -36,6 +36,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #EFEFEF;
   }
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 const Entry = () => (

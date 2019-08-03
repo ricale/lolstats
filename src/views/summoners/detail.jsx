@@ -17,29 +17,37 @@ import actions from 'actions/summoners';
 
 import Tier from './_tier';
 import Profile from './_profile';
+import Statistics from './_statistics';
 
 const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
 
-  width: 100%;
-  height: 100%;
-  margin-top: 30px;
+  margin: 30px 0;
 `;
 
-const SummonerDetailView = ({summoner, soloQueueEntry, flexQueueEntry}) => (
+const SummonerDetailView = ({statistics, summoner, soloQueueEntry, flexQueueEntry}) => (
   <Container>
-    <Profile {...summoner} />
+    <Row>
+      <Profile {...summoner} />
 
-    {soloQueueEntry &&
-      <Tier {...soloQueueEntry} />
-    }
+      {soloQueueEntry &&
+        <Tier {...soloQueueEntry} />
+      }
 
-    {flexQueueEntry &&
-      <Tier {...flexQueueEntry} />
-    }
+      {flexQueueEntry &&
+        <Tier {...flexQueueEntry} />
+      }
+    </Row>
+
+    <Statistics data={statistics} />
   </Container>
 );
 
@@ -54,9 +62,14 @@ const SummonerDetail = compose(
     },
     componentDidUpdate (prevProps) {
       const {summoner} = this.props;
-      if(summoner.id !== prevProps.summoner.id) {
-        this.props.fetchSummonerEntry(this.props.summoner.id);
-        this.props.fetchSummonerMatches(
+      console.log('summoner.id !== prevProps.summoner.id', summoner.id, prevProps.summoner.id)
+      if(summoner.userId !== prevProps.summoner.userId) {
+        this.props.fetchSummonerEntry(this.props.summoner.userId);
+        // this.props.fetchSummonerMatches(
+        //   this.props.summoner.accountId,
+        //   QUEYE_TYPE_ID.SOLO_QUEUE
+        // );
+        this.props.fetchSummonerStatistics(
           this.props.summoner.accountId,
           QUEYE_TYPE_ID.SOLO_QUEUE
         );
@@ -69,12 +82,14 @@ const mapStateToProps = (state, ownProps) => ({
   username: ownProps.match.params.username,
   summoner: state.summoners.current,
   entry: state.summoners.entry,
+  statistics: state.summoners.statistics,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchSummoner: (...args) => dispatch(actions.fetchOne(...args)),
   fetchSummonerEntry: (...args) => dispatch(actions.fetchEntry(...args)),
-  fetchSummonerMatches: (...args) => dispatch(actions.fetchMatches(...args)),
+  // fetchSummonerMatches: (...args) => dispatch(actions.fetchMatches(...args)),
+  fetchSummonerStatistics: (...args) => dispatch(actions.fetchStatistics(...args)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummonerDetail);

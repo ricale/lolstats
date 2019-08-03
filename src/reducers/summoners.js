@@ -2,6 +2,7 @@ const initialState = {
   current: {},
   entry: [],
   matches: [],
+  statistics: [],
 };
 
 export default function summoners (state = initialState, action) {
@@ -20,6 +21,11 @@ export default function summoners (state = initialState, action) {
       return {...state, loading: true};
     case 'SUMMONERS/FETCH_MATCHES/SUCCESS':
       return {...state, matches: action.payload, loading: false};
+
+    case 'SUMMONERS/FETCH_STATISTICS':
+      return {...state, loading: true};
+    case 'SUMMONERS/FETCH_STATISTICS/SUCCESS':
+      return {...state, statistics: action.payload, loading: false};
   }
   return state;
 }

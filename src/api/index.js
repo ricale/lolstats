@@ -10,3 +10,6 @@ export const fetchSummonerEntry = (userId) =>
 
 export const fetchSummonerMatches = (accountId, queue) =>
   wfetch(...schema.FETCH_SUMMONER_MATCHES, {query: {accountId, queue}})
+
+export const fetchSummonerStatistics = (accountId, queue) =>
+  wfetch(...schema.FETCH_SUMMONER_STATISTICS, {query: {accountId, queue}})

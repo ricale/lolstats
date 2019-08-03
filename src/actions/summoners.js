@@ -5,6 +5,7 @@ const actions = createActions({
     FETCH_ONE: (username) => ({username}),
     FETCH_ENTRY: (userId) => ({userId}),
     FETCH_MATCHES: (accountId, queue) => ({accountId, queue}),
+    FETCH_STATISTICS: (accountId, queue) => ({accountId, queue}),
   },
 });
 

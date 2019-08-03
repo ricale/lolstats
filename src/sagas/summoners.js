@@ -18,3 +18,9 @@ export const watchFetchSummonerMatches = factoryWatchFetchAction(
   api.fetchSummonerMatches,
   p => [p.accountId, p.queue],
 );
+
+export const watchFetchSummonerStatistics = factoryWatchFetchAction(
+  'SUMMONERS/FETCH_STATISTICS',
+  api.fetchSummonerStatistics,
+  p => [p.accountId, p.queue],
+);
