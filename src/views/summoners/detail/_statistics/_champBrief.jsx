@@ -4,7 +4,7 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import numeral from 'numeral';
 
-import {formatted} from 'lib';
+import {formatted, withProps} from 'lib';
 
 const SIZE = 150;
 const SMALL_SIZE = 100;
@@ -13,6 +13,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding: 10px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+
+  background-color: #FFF;
 `;
 
 const ChampIcon = styled.img`
@@ -34,10 +40,10 @@ const Pie = styled.div`
 
   ${p => css`
     & ${ChampIcon} {
-      top: ${(p.size - (p.size / 3 * 2)) / 2}px;
-      left: ${(p.size - (p.size / 3 * 2)) / 2}px;
-      width: ${(p.size / 3 * 2)}px;
-      border-radius: ${(p.size / 3 * 2)}px;
+      top: ${(p.size - (p.size / 4 * 3)) / 2}px;
+      left: ${(p.size - (p.size / 4 * 3)) / 2}px;
+      width: ${(p.size / 4 * 3)}px;
+      border-radius: ${(p.size / 4 * 3)}px;
     }
   `}
 `;
@@ -75,7 +81,7 @@ const PiePiece = styled.div`
 `;
 
 const WinAndLose = styled.div`
-  ${p => p.size === 'small' && css`
+  ${p => p.size < 150 && css`
     font-size: 0.875rem;
   `}
 `;
@@ -83,27 +89,33 @@ const KDA = styled.div`
   
 `;
 
-const ChmapBrief = ({
+const ChmapBriefView = ({
   icon,
-  size,
   win,
   lose,
   game,
+  pieSize,
+  playRate,
   stats = {},
 }) => (
   <Container>
-    <Pie size={size === 'small' ? SMALL_SIZE : SIZE}>
+    <Pie size={pieSize}>
       <PiePiece color='crimson' weight={lose / game} />
       <PiePiece color='cornflowerblue' weight={win / game} offset={lose / game} />
       <ChampIcon src={icon} />
     </Pie>
-    <WinAndLose size={size}>
-      {`${win}승 ${lose}패 (${Math.floor(win / game * 100)}%)`}
+    <WinAndLose size={pieSize}>
+      {`${win}승 ${lose}패 (${formatted(win / game * 100)}%)`}
     </WinAndLose>
     <KDA>
       {numeral((stats.kills + stats.assists) / stats.deaths).format('0.00')}
     </KDA>
+    <div style={{color: 'green'}}>{`${formatted(playRate * 100)}%`}</div>
   </Container>
 );
+
+const ChmapBrief = withProps(({playRate}) => ({
+  pieSize: Math.floor((playRate < 0.5 ? playRate : 0.5) * 10) * 10 + 100,
+}))(ChmapBriefView)
 
 export default ChmapBrief;

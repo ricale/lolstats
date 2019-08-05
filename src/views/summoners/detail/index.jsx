@@ -27,10 +27,11 @@ const Container = styled.div`
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
 
   margin: 30px 0;
+  padding: 0 30px;
 `;
 
 const SummonerDetailView = ({statistics, summoner, soloQueueEntry, flexQueueEntry}) => (
@@ -47,23 +48,38 @@ const SummonerDetailView = ({statistics, summoner, soloQueueEntry, flexQueueEntr
       }
     </Row>
 
-    <Statistics data={statistics} />
+    <Row>
+      <Statistics
+          entry={soloQueueEntry}
+          data={statistics}
+          />
+    </Row>
   </Container>
 );
 
 const SummonerDetail = compose(
-  withProps(({entry}) => ({
-    soloQueueEntry: entry.filter((e) => QUEUE_TYPE.SOLO_QUEUE === e.queueType)[0],
-    flexQueueEntry: entry.filter((e) => QUEUE_TYPE.FLEX_QUEUE === e.queueType)[0],
-  })),
+  withProps(({entry, statistics}) => {
+    const soloQueueEntry = entry.filter((e) => QUEUE_TYPE.SOLO_QUEUE === e.queueType)[0];
+    const flexQueueEntry = entry.filter((e) => QUEUE_TYPE.FLEX_QUEUE === e.queueType)[0];
+    return {
+      soloQueueEntry,
+      flexQueueEntry,
+      statistics: statistics.map(s => ({
+        ...s,
+        playRate: s.game / (soloQueueEntry.wins + soloQueueEntry.losses)
+      })),
+    };
+  }),
   lifecycle({
     componentDidMount () {
       this.props.fetchSummoner(this.props.username);
     },
     componentDidUpdate (prevProps) {
-      const {summoner} = this.props;
-      console.log('summoner.id !== prevProps.summoner.id', summoner.id, prevProps.summoner.id)
-      if(summoner.userId !== prevProps.summoner.userId) {
+      const {username, summoner} = this.props;
+      if(username !== prevProps.username) {
+        this.props.fetchSummoner(this.props.username);
+
+      } else if(summoner.userId !== prevProps.summoner.userId) {
         this.props.fetchSummonerEntry(this.props.summoner.userId);
         // this.props.fetchSummonerMatches(
         //   this.props.summoner.accountId,
