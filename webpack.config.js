@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  // entry: './src/index.tsx',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -10,10 +10,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: 'ts-loader',
         },
       },
       {
@@ -26,16 +26,19 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      actions:    path.resolve(__dirname, './src/actions'),
-      api:        path.resolve(__dirname, './src/api'),
-      assets:     path.resolve(__dirname, './src/assets'),
-      components: path.resolve(__dirname, './src/components'),
-      constants:  path.resolve(__dirname, './src/constants'),
-      lib:        path.resolve(__dirname, './src/lib'),
-      reducers:   path.resolve(__dirname, './src/reducers'),
-      themes:     path.resolve(__dirname, './src/themes'),
+      // actions:    path.resolve(__dirname, './src/actions'),
+      // api:        path.resolve(__dirname, './src/api'),
+      // assets:     path.resolve(__dirname, './src/assets'),
+      // components: path.resolve(__dirname, './src/components'),
+      // constants:  path.resolve(__dirname, './src/constants'),
+      // lib:        path.resolve(__dirname, './src/lib'),
+      // reducers:   path.resolve(__dirname, './src/reducers'),
+      // themes:     path.resolve(__dirname, './src/themes'),
+      pages: path.resolve(__dirname, './src/pages'),
+      store: path.resolve(__dirname, './src/store'),
+      utils: path.resolve(__dirname, './src/utils'),
     },
   },
   mode: 'development',
