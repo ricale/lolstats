@@ -1,0 +1,1 @@
+export { default as SummonerDetailPage } from './summoner/detail';

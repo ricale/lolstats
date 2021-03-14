@@ -28,14 +28,12 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      // actions:    path.resolve(__dirname, './src/actions'),
-      // api:        path.resolve(__dirname, './src/api'),
+      api:        path.resolve(__dirname, './src/api'),
       // assets:     path.resolve(__dirname, './src/assets'),
       // components: path.resolve(__dirname, './src/components'),
       // constants:  path.resolve(__dirname, './src/constants'),
-      // lib:        path.resolve(__dirname, './src/lib'),
-      // reducers:   path.resolve(__dirname, './src/reducers'),
-      // themes:     path.resolve(__dirname, './src/themes'),
+      router: path.resolve(__dirname, './src/router'),
+      themes:     path.resolve(__dirname, './src/themes'),
       pages: path.resolve(__dirname, './src/pages'),
       store: path.resolve(__dirname, './src/store'),
       utils: path.resolve(__dirname, './src/utils'),

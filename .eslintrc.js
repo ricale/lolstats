@@ -1,79 +1,40 @@
 module.exports = {
   "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+      "browser": true,
+      "es2020": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parser": "babel-eslint",
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 11,
+      "sourceType": "module"
   },
   "plugins": [
-    "react"
+      "react",
+      "@typescript-eslint"
   ],
   "rules": {
-    "key-spacing": [
-      "error",
-      {
-        "mode": "minimum"
-      }
-    ],
-    "space-before-function-paren": [
-      "error",
-      "always"
-    ],
-    "brace-style": [
-      "error",
-      "1tbs",
-      {
-        "allowSingleLine": true
-      }
-    ],
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
+      "comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "only-multiline",
+      }],
+      'quotes': ['error', 'single'],
+      "semi": ["error", "always"],
 
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        "args": "none",
-        "ignoreRestSiblings": true,
-      }
-    ],
-    "no-invalid-this": [
-      "off"
-    ],
-    "react/display-name": [
-      "off"
-    ],
-    "react/prop-types": [
-      "off"
-    ],
-    "react/jsx-indent-props": [
-      2,4
-    ],
-  },
-  'settings': {
-    'react': {
-      version: '999.999.999'
-    }
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/ban-types": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   }
 };

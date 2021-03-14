@@ -7,6 +7,9 @@ import getRootReducer from './reducer';
 import { RootState } from './types';
 import rootSaga from './saga';
 
+export * from './actions';
+export * from './types';
+
 export default function getStore(
     history: History<{}>,
     preloadedState: Partial<RootState>,

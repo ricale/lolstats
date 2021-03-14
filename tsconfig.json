@@ -14,15 +14,15 @@
       "baseUrl": "./",
       "moduleResolution": "node",
       "paths": {
-        // "api": ["src/api"],
+        "api": ["src/api"],
         // "components": ["src/components"],
         // "env": ["src/env"],
         // "logger": ["src/logger"],
         "pages": ["src/pages"],
         // "res": ["src/res"],
-        // "router": ["src/router"],
+        "router": ["src/router"],
         "store": ["src/store"],
-        // "themes": ["src/themes"],
+        "themes": ["src/themes"],
         "utils": ["src/utils"],
       },
   
