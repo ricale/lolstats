@@ -15,6 +15,8 @@
       "moduleResolution": "node",
       "paths": {
         "api": ["src/api"],
+        "assets": ["src/assets"],
+        "consts": ["src/consts"],
         // "components": ["src/components"],
         // "env": ["src/env"],
         // "logger": ["src/logger"],

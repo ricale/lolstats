@@ -3,6 +3,8 @@ import { actionTypes as t } from './actions';
 
 const initialState: SummonerState = {
     detail: null,
+    entries: [],
+    statistics: null,
 };
 
 export default function summonerReducer(
@@ -11,9 +13,17 @@ export default function summonerReducer(
 ) {
     switch(action.type) {
         case t.SUCCESS_GET_SUMMONER:
-            console.log('SUCCESS_GET_SUMMONER', action);
             return {
                 ...state,
+                detail: {
+                    ...action.payload.summoner,
+                },
+                entries: [
+                    ...action.payload.entries,
+                ],
+                statistics: [
+                    ...action.payload.statistics,
+                ],
             };
     }
     return state;

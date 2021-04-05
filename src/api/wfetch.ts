@@ -38,7 +38,6 @@ async function handleAndThrowError(err: unknown) {
             networkStatus: err.status,
             body: isJson ? convertAllKeys(errorBody) : errorBody.slice(0, 50),
         };
-
         throw error;
     }
     throw err;
@@ -61,6 +60,8 @@ function logResult(
     } = result;
 
     console.log('[', response.status, ']', method, shortUrl);
+    console.log('headers', headers);
+    console.log('body', body);
   
     // Logger.groupCollapsedAtOnce(
     //     ['[', response.status, ']', method, shortUrl],
@@ -92,7 +93,7 @@ export default async function wfetch(
     try {
         const response = await fetch(url, fetchOptions);
         const responseBody = await checkStatusAndGetResponseBody(response);
-        const converted = convertAllKeys(responseBody);
+        const converted: any = convertAllKeys(responseBody);
 
         logResult(url, fetchOptions, {
             response,

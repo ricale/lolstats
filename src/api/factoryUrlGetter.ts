@@ -1,3 +1,5 @@
+import { convertToSnakeCase } from 'utils';
+
 const factoryUrlGetter = (str: string) => {
     const replacees = [
         ...new Set(
@@ -14,7 +16,7 @@ const factoryUrlGetter = (str: string) => {
         const replaced = replacees.reduce((acc, replacee) =>
             acc.replace(
                 replacee,
-                params[replacee.slice(4, -3)] || ''
+                params[convertToSnakeCase(replacee.slice(4, -3))] || ''
             )
         , str);
 

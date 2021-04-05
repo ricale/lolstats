@@ -5,7 +5,7 @@ import {getImagePath as img} from 'assets';
 
 import {
   QUEUE_NAME,
-} from 'constants';
+} from 'consts';
 
 const Container = styled.div`
   display: flex;

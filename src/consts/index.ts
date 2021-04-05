@@ -13,3 +13,6 @@ export const QUEUE_NAME = {
   [SOLO_QUEUE]: '솔로랭크',
   [FLEX_QUEUE]: '자유랭크',
 }
+
+import * as championByKey from './championByKey.json';
+export { championByKey };

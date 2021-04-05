@@ -13,7 +13,10 @@ const p = (name: string) => `<%= ${name} %>`;
 const qs = (...names: string[]) => `<%= q(${names.join(',')}) %>`;
 
 const schema = {
-    GET_SUMMONER: f('GET', `summoners/${p('username')}`),
+    GET_SUMMONER:       f('GET', `summoners/${p('username')}`),
+    GET_SUMMONER_ENTRY: f('GET', `summoners/entries/${p('userId')}`),
+
+    GET_SUMMONER_STATISTICS: f('GET', `statistics/${p('accountId')}${qs('queue')}`),
 };
 
 export default schema;

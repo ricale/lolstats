@@ -3,9 +3,14 @@ import { convertToCamelCase } from 'utils';
 import { BaseAction } from '../types';
 
 type ActionGetter = (data?: any) => BaseAction
+type ActionData = {
+    requestParams?: any
+    payload?: any
+    message?: string
+}
 
 const requestActionCreator = (actionType: string) =>
-    (data?: any): BaseAction => ({
+    (data?: ActionData): BaseAction => ({
         type: actionType,
         payload: data,
         meta: {
@@ -14,7 +19,7 @@ const requestActionCreator = (actionType: string) =>
     });
 
 export const resultActionCreator = (actionType: string) =>
-    (data?: any): BaseAction => ({
+    (data?: ActionData): BaseAction => ({
         type: actionType,
         requestParams: data.requestParams,
         payload: data.payload,

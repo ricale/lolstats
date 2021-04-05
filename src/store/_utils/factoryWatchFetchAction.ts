@@ -15,7 +15,7 @@ export default function factoryWatchFetchAction(
             yield put(
                 resultActionCreator(successActionType)({
                     requestParams: action.payload,
-                    paylaod: data,
+                    payload: data,
                     message: successActionType,
                 })
             );
@@ -25,7 +25,7 @@ export default function factoryWatchFetchAction(
             yield put(
                 resultActionCreator(failureActionType)({
                     requestParams: action.payload,
-                    paylaod: err,
+                    payload: err,
                     message: failureActionType,
                 })
             );

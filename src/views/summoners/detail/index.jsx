@@ -11,7 +11,7 @@ import {
 import {
   QUEUE_TYPE,
   QUEYE_TYPE_ID,
-} from 'constants';
+} from 'consts';
 
 import actions from 'actions/summoners';
 
@@ -80,15 +80,16 @@ const SummonerDetail = compose(
         this.props.fetchSummoner(this.props.username);
 
       } else if(summoner.userId !== prevProps.summoner.userId) {
+        console.log('this.props.summoner', this.props.summoner)
         this.props.fetchSummonerEntry(this.props.summoner.userId);
-        // this.props.fetchSummonerMatches(
+        // // this.props.fetchSummonerMatches(
+        // //   this.props.summoner.accountId,
+        // //   QUEYE_TYPE_ID.SOLO_QUEUE
+        // // );
+        // this.props.fetchSummonerStatistics(
         //   this.props.summoner.accountId,
         //   QUEYE_TYPE_ID.SOLO_QUEUE
         // );
-        this.props.fetchSummonerStatistics(
-          this.props.summoner.accountId,
-          QUEYE_TYPE_ID.SOLO_QUEUE
-        );
       }
     },
   }),

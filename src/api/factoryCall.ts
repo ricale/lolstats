@@ -1,14 +1,7 @@
-import { convertAllKeys } from 'utils';
+import { convertAllKeysToSnakeCase } from 'utils';
 
 import { Schema, ParamsParser, CallParams } from './types';
 import wfetch from './wfetch';
-
-function convertAllKeysFromCamelToSnake(value: any) {
-    return convertAllKeys(value, {
-        searcher: /([a-z])([A-Z])/g,
-        replacer: (_, p1, p2) => `${p1}_${p2.toLowerCase()}`,
-    });
-}
 
 function getOptions(params: CallParams, paramsParser: ParamsParser) {
     if(!paramsParser) {
@@ -17,7 +10,7 @@ function getOptions(params: CallParams, paramsParser: ParamsParser) {
 
     if(paramsParser === 'query|page') {
         return {
-            query: convertAllKeysFromCamelToSnake({
+            query: convertAllKeysToSnakeCase({
                 page: undefined,
                 pageSize: undefined,
                 ...params,
@@ -27,7 +20,7 @@ function getOptions(params: CallParams, paramsParser: ParamsParser) {
 
     if(paramsParser === 'query') {
         return {
-            query: convertAllKeysFromCamelToSnake(params),
+            query: convertAllKeysToSnakeCase(params),
         };
     }
 
@@ -35,13 +28,13 @@ function getOptions(params: CallParams, paramsParser: ParamsParser) {
         const { id, ...rest } = params;
         return {
             query: { id },
-            body: convertAllKeysFromCamelToSnake(rest),
+            body: convertAllKeysToSnakeCase(rest),
         };
     }
 
     if(paramsParser === 'body') {
         return {
-            body: convertAllKeysFromCamelToSnake(params),
+            body: convertAllKeysToSnakeCase(params),
         };
     }
 
