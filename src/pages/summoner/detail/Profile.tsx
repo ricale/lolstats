@@ -14,8 +14,6 @@ const Container = styled.div`
   /*padding: 40px;*/
   width: 235px;
   height: 205px;
-
-  background-color: #FFF;
 `;
 
 const ProfileImage = styled.img.attrs({alt: ''})`

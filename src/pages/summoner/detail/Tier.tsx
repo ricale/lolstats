@@ -16,7 +16,6 @@ const Container = styled.div`
     padding: 20px;
     margin-right: 3px;
 
-    background-color: #FFF;
     /*box-shadow: 0 0 5px 5px #AAA;*/
 `;
 

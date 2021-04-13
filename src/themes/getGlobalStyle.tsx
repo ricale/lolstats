@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { NormalTheme } from './normal';
 
 const getGlobalStyle = (theme: NormalTheme) => createGlobalStyle`
-html,body,
+    html,body,
     h1,h2,h3,h4,h5,h6,
     p,
     input, button {

@@ -21,9 +21,9 @@ export default function summonerReducer(
                 entries: [
                     ...action.payload.entries,
                 ],
-                statistics: [
-                    ...action.payload.statistics,
-                ],
+                // statistics: [
+                //     ...action.payload.statistics,
+                // ],
             };
     }
     return state;

@@ -9,16 +9,16 @@ export const watchGetSummoner = factoryWatchFetchAction(
     async (payload: any) => {
         const summoner = await calls.getSummoner(payload);
         const entries = await calls.getSummonerEntry({userId: summoner.userId});
-        const statistics = await calls.getSummonerStatistics({
-            accountId: summoner.accountId,
-            queue: QUEYE_TYPE_ID.SOLO_QUEUE, // FIXME:
-        });
+        // const statistics = await calls.getSummonerStatistics({
+        //     accountId: summoner.accountId,
+        //     queue: QUEYE_TYPE_ID.SOLO_QUEUE, // FIXME:
+        // });
         
 
         return {
             summoner,
             entries,
-            statistics,
+            // statistics,
         }
     }
 );

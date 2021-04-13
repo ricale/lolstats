@@ -14,5 +14,4 @@ export const getImagePath = (category: string, id: string) => {
     default:
       return `${BASE}/images/${category}/${id}.png`;
   }
-  return ''
 };

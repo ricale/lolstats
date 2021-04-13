@@ -17,8 +17,6 @@ const Container = styled.div`
     padding: 10px;
     margin-right: 3px;
     margin-bottom: 3px;
-
-    background-color: #FFF;
 `;
 
 const ChampIcon = styled.img`

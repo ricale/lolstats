@@ -20,21 +20,19 @@ const Container = styled.div`
     background-color: ${p => p.theme.colors.colorBackground};
 `;
 
-const AppRouterSwitch = () => {
-    // const location = useLocation<Location>();
-    return (
-        <Switch>
-            <Route path='/summoners/:username' component={pages.SummonerDetailPage} />
-        </Switch>
-    )
-}
-
 const AppRouter = () => {
     return (
         <>
             <Container>
                 <Router>
-                    <AppRouterSwitch />
+                    <Route
+                        path='/summoners/:username'
+                        component={pages.SummonerPageBase}
+                        />
+                    <Route
+                        path='/summoners/:username/most'
+                        component={pages.SummonerMostPage}
+                        />
                 </Router>
             </Container>
             {/* LoadingIndicatorOverlay */}

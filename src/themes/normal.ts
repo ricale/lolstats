@@ -3,8 +3,8 @@ import { DefaultTheme } from 'styled-components';
 const colors = {
     colorPrimary: 'dodgerblue',
 
-    colorBackground: 'white',
-    colorOnBackground: 'black',
+    colorBackground: 'black',
+    colorOnBackground: 'white',
 };
 
 const dimens = {
